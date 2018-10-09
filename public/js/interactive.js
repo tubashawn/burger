@@ -1,29 +1,25 @@
 $(function () {
-    $(window).on("load", function() {
-        alert("Loaded");
-    });
     
-    $("#undevour-btn, #devour-btn").on("click", function (event) {
-        event.preventDefault();
-        var id = $(this).val();
-        var newDevouredState = {
-            devoured: event.target.id == "devour-btn" ? true : false
-        };
+    // $("#undevour-btn, #devour-btn").on("click", function (event) {
+    //     event.preventDefault();
+    //     var id = $(this).val();
+    //     var newDevouredState = {
+    //         devoured: event.target.id == "devour-btn" ? true : false
+    //     };
 
-        $.ajax("./api/burger/" + id, {
-            type: "PUT",
-            data: newDevouredState
-        }).then(
-            function () {
-                location.reload();
-            }
-        );
-    });
+    //     $.ajax("./api/burgers/" + id, {
+    //         type: "PUT",
+    //         data: newDevouredState
+    //     }).then(
+    //         function () {
+    //             location.reload();
+    //         }
+    //     );
+    // });
 
     $("#burgerButton").on("click", function (event) {
         event.preventDefault();
-        alert("Button clicked");
-        var name = $("#userBurger").val().trim();
+        var name = $("#yourBurger").val().trim();
         if (name.length == 0) {
             return;
         }
@@ -31,13 +27,14 @@ $(function () {
         var data = {
             name: name,
             devoured: false
-        }
+        };
 
-        $.ajax("./api/burger/", {
+        $.ajax("./api/burgers/", {
             type: "POST",
             data: data
         }).then(
             function () {
+                console.log("submitted");
                 location.reload();
             }
         );

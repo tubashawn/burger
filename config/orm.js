@@ -27,12 +27,12 @@ var orm = {
     },
 
 
-    updateOne: function (cols, vals, cb) {
-        var queryString = "UPDATE burgers SET ? WHERE ?";
+    updateOne: function (objColVals, condition, cb) {
+        var queryString = "UPDATE burgers";
+        queryString += " SET " + objToSql(objColVals);
+        queryString += " WHERE " + condition;
         console.log(queryString);
-        connection.query(queryString,
-            [cols, vals],
-            function (err, res) {
+        connection.query(queryString, function (err, res) {
                 if (err) {
                     throw err;
                 }
